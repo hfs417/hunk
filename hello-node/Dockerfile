@@ -1,12 +1,4 @@
-FROM python:3.6.4
-
-RUN mkdir /code \
-&&apt-get update \
-&&apt-get -y install freetds-dev \
-&&apt-get -y install unixodbc-dev
-COPY app /code 
-COPY requirements.txt /code
-RUN pip install -r /code/requirements.txt -i https://pypi.douban.com/simple
-WORKDIR /code
-
-CMD ["/bin/bash","run.sh"]
+FROM node:6.14.2
+EXPOSE 8080
+COPY server.js .
+CMD [ "node", "server.js" ]
